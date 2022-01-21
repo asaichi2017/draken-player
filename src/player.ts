@@ -50,9 +50,9 @@ class Player {
       ...defaultOptions,
       ...options,
     }
-    const embedEndpoint = String(import.meta.env.VITE_EMBED_ENDPOINT)
-    if (embedEndpoint.startsWith('http')) {
-      this.options.endpoint = embedEndpoint
+    const embedEndpoint = import.meta.env.VITE_EMBED_ENDPOINT
+    if (embedEndpoint) {
+      this.options.endpoint = String(embedEndpoint)
     }
     if (!this.options.endpoint) {
       throw new Error('endpointを指定してください')
