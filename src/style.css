@@ -1,0 +1,19 @@
+.vjs-control .vjs-icon-cog {
+  font-size: 150%;
+}
+
+.vjs-waiting .vjs-big-play-button {
+  display: none;
+}
+
+.vjs-quality-change-menu-button .vjs-menu-item {
+  text-transform: none;
+}
+.vjs-quality-change-menu-label {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
