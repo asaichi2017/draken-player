@@ -11,7 +11,7 @@
       "import": "./dist/draken-player.es.js",
       "require": "./dist/draken-player.umd.js"
     },
-    "./dist/style.css": "./dist/draken-player.css"
+    "./dist/draken-player.css": "./dist/draken-player.css"
   },
   "main": "./dist/draken-player.umd.js",
   "module": "./dist/draken-player.es.js",
