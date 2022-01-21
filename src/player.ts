@@ -38,7 +38,7 @@ const defaultOptions: PlayerOptions = {
 
 class Player {
   protected player: videojs.Player | null = null
-  protected timer: NodeJS.Timer | null = null
+  protected timer: number | null = null
   protected contentUrl?: string
   protected poster?: string
   protected sign?: VideoUrlApiResponse['sign']
