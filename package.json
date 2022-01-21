@@ -31,6 +31,7 @@
     "vite": "^2.5.2"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "video.js": "^7.14.3",
     "videojs-contrib-quality-levels": "^2.1.0"
   }
