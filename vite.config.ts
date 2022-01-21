@@ -12,7 +12,7 @@ export default defineConfig({
       fileName: format => `draken-player.${format}.js`,
     },
     rollupOptions: {
-      external: ['video.js', 'videojs-contrib-quality-levels'],
+      external: ['axios', 'video.js', 'videojs-contrib-quality-levels'],
       output: {
         assetFileNames: info => {
           if (info.name === 'style.css') {
