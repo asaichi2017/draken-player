@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:asaichi2017/draken-player.git"
+    "url": "https://github.com/asaichi2017/draken-player.git"
   },
   "files": [
     "dist",
