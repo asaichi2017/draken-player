@@ -1,7 +1,19 @@
 {
-  "private": true,
-  "name": "draken-player",
-  "version": "0.0.0",
+  "name": "@draken/player",
+  "version": "0.1.0",
+  "description": "Draken Player",
+  "author": "Asaichi, LLC. <taichi@asaichi.co.jp> (https://asaichi.co.jp/)",
+  "license": "Apache-2.0",
+  "keywords": [
+    "hls",
+    "html5",
+    "player",
+    "video"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:asaichi2017/draken-player.git"
+  },
   "files": [
     "dist",
     "src"
