@@ -96,7 +96,7 @@ class Player {
     if (this.options.layout === 'fill') {
       player.contentEl().classList.add('vjs-fill')
     } else if (this.options.layout === 'fluid') {
-      player.contentEl().classList.add('vjs-fluid')
+      player.contentEl().classList.add('draken-player-fluid')
     }
     player.contentEl().classList.add('vjs-big-play-centered')
     player.contentEl().classList.add('vjs-waiting')
@@ -154,6 +154,15 @@ class Player {
         return options
       }
     }
+
+    this.player?.one('loadeddata', () => {
+      if (!this.player) return
+      const width = this.player.videoWidth()
+      const height = this.player.videoHeight()
+      const el = this.player.el() as HTMLElement
+      el.style.setProperty('--draken-player-video-width', String(width))
+      el.style.setProperty('--draken-player-video-height', String(height))
+    })
 
     this.player?.one('play', async () => {
       await playLogs(this.options.endpoint!, this.contentID, await this.getTokens())

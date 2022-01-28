@@ -17,3 +17,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.video-js.draken-player-fluid {
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  aspect-ratio: var(--draken-player-video-width, var(--draken-player-default-video-width, 16)) / var(--draken-player-video-height, var(--draken-player-default-video-height, 9));
+}
