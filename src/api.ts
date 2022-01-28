@@ -15,7 +15,7 @@ type Headers = { [key: string]: string }
 function createAuthHeader(tokens: Tokens): Headers {
   let headers: { [key: string]: string } = {}
   if (tokens.idToken) {
-    headers['Authorization'] = tokens.idToken
+    headers['Authorization'] = `Bearer ${tokens.idToken}`
   }
   if (tokens.apiKey) {
     headers['x-api-key'] = tokens.apiKey
