@@ -9,7 +9,7 @@ export class PlaybackResumePlugin extends Plugin {
     this.videoId = options.videoId
     window.addEventListener('beforeunload', this.listener.beforeunload)
     this.player.on('pause', this.listener.pause)
-    this.player.on('loadedmetadata', this.listener.loadedmetadata)
+    this.player.on('loadeddata', this.listener.loadeddata)
   }
 
   dispose() {
@@ -18,7 +18,7 @@ export class PlaybackResumePlugin extends Plugin {
     }
     window.removeEventListener('beforeunload', this.listener.beforeunload)
     this.player.off('pause', this.listener.pause)
-    this.player.off('loadedmetadata', this.listener.loadedmetadata)
+    this.player.off('loadeddata', this.listener.loadeddata)
   }
 
   listener = {
@@ -30,7 +30,7 @@ export class PlaybackResumePlugin extends Plugin {
       if (!this.videoId) return
       saveResumeLog(this.videoId, this.player.currentTime())
     },
-    loadedmetadata: () => {
+    loadeddata: () => {
       if (!this.videoId) return
       refreshResumeLog()
       const time = getResumeLog(this.videoId)
