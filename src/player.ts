@@ -167,6 +167,10 @@ class Player {
     this.player?.one('play', async () => {
       await playLogs(this.options.endpoint!, this.contentID, await this.getTokens())
     })
+
+    this.player?.on('loadedmetadata', () => {
+      this.player?.contentEl().classList.remove('vjs-waiting')
+    })
   }
 
   protected async checkSignExpire() {
