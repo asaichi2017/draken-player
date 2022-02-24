@@ -16,6 +16,12 @@ const player = draken.player('video', {
   ...envToFunc('idToken', import.meta.env.VITE_ID_TOKEN),
   ...envToFunc('adminToken', import.meta.env.VITE_ADMIN_TOKEN),
 } as any)
+
+const videojsPlayer = player.getRawPlayer()!
+videojsPlayer.on('firstplay', () => {
+  console.info('videojs event fired: firstplay')
+})
+
 player.load(contentID)
 
 const form = document.getElementById('form')!

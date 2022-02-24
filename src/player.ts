@@ -61,6 +61,10 @@ class Player {
     this.player = this.createPlayer(dom)
   }
 
+  getRawPlayer(): videojs.Player | null {
+    return this.player
+  }
+
   async load(contentID: string) {
     this.contentID = contentID
     this.setupPlayer()
