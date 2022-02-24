@@ -1,4 +1,4 @@
-import videojs from 'video.js'
+import videojs, { VideoJsPlayerOptions } from 'video.js'
 import 'video.js/dist/video-js.css'
 import 'videojs-contrib-quality-levels'
 import './QualityChangeMenuPlugin/register'
@@ -28,6 +28,8 @@ export type PlayOptions = {
   enablePlaybackResume?: boolean
   // videoタグのDOMのサイズ設定
   layout?: 'fill' | 'fluid' | 'none'
+  // 動画下部のコントロール部分の表示設定
+  controlBar?: VideoJsPlayerOptions['controlBar']
 }
 
 const defaultOptions: PlayerOptions = {
@@ -88,6 +90,7 @@ class Player {
   protected createPlayer(dom: string | HTMLVideoElement) {
     const player = videojs(dom, {
       controls: true,
+      controlBar: this.options.controlBar,
       ...(this.options.enablePlaybackRates
         ? {
             playbackRates: Array.isArray(this.options.enablePlaybackRates)

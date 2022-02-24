@@ -15,7 +15,17 @@ const player = draken.player('video', {
   ...envToString('apiKey', import.meta.env.VITE_API_KEY),
   ...envToFunc('idToken', import.meta.env.VITE_ID_TOKEN),
   ...envToFunc('adminToken', import.meta.env.VITE_ADMIN_TOKEN),
-} as any)
+  // enablePlaybackRates: false,
+  // enablePlaybackResume: false,
+  controlBar: {
+    // fullscreenToggle: false,
+    // pictureInPictureToggle: false,
+    // volumePanel: false,
+    // playToggle: false,
+    // progressControl: false,
+    // remainingTimeDisplay: false,
+  },
+})
 
 const videojsPlayer = player.getRawPlayer()!
 videojsPlayer.on('firstplay', () => {
