@@ -17,6 +17,7 @@ const player = draken.player('video', {
   ...envToFunc('adminToken', import.meta.env.VITE_ADMIN_TOKEN),
   // enablePlaybackRates: false,
   // enablePlaybackResume: false,
+  // bigPlayButton: false,
   // controlBarそのものを非表示
   // controlBar: false,
   controlBar: {

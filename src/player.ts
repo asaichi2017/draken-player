@@ -28,6 +28,8 @@ export type PlayOptions = {
   enablePlaybackResume?: boolean
   // videoタグのDOMのサイズ設定
   layout?: 'fill' | 'fluid' | 'none'
+  // 動画中央の再生ボタンの表示設定
+  bigPlayButton?: VideoJsPlayerOptions['bigPlayButton']
   // 動画下部のコントロール部分の表示設定
   controlBar?: VideoJsPlayerOptions['controlBar']
 }
@@ -36,6 +38,7 @@ const defaultOptions: PlayerOptions = {
   enablePlaybackRates: true,
   enablePlaybackResume: true,
   layout: 'fluid',
+  bigPlayButton: true,
 }
 
 class Player {
@@ -90,6 +93,7 @@ class Player {
   protected createPlayer(dom: string | HTMLVideoElement) {
     const player = videojs(dom, {
       controls: true,
+      bigPlayButton: this.options.bigPlayButton,
       controlBar: this.options.controlBar,
       ...(this.options.enablePlaybackRates
         ? {
