@@ -6,6 +6,7 @@ export class QualityChangeMenuPlugin extends Plugin {
   protected button: QualityChangeMenuButton | null = null
 
   setup(options?: { position?: number }) {
+    if (!this.player.controlBar) return
     const menuPosition = options?.position ?? -3
     this.button = this.player.controlBar.addChild(
       new QualityChangeMenuButton(this.player),
@@ -18,7 +19,7 @@ export class QualityChangeMenuPlugin extends Plugin {
   }
 
   dispose() {
-    if (this.button) {
+    if (this.player.controlBar && this.button) {
       this.player.controlBar.removeChild(this.button)
     }
   }
