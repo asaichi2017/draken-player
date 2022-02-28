@@ -145,7 +145,12 @@ class Player {
       this.player?.qualityChangeMenu().setup()
     }
 
-    this.player?.src({ type: 'application/x-mpegURL', src: this.contentUrl })
+    const url = new URL(this.contentUrl)
+    // 本当は`player.vhs.xhr.beforeRequest`でcontentTokenを付与したいが、
+    // `player.vhs`が作られてから`contentUrl`にリクエストが投げられるまでの間に発火するイベントが無い(?)ので
+    // 最初のリクエストだけは個別にcontentTokenを付ける
+    url.searchParams.set('contentToken', this.sign.contentToken)
+    this.player?.src({ type: 'application/x-mpegURL', src: url.toString() })
     this.player?.poster(`${this.poster}`)
 
     this.timer = setInterval(() => {
@@ -153,17 +158,23 @@ class Player {
     }, intervalToCheckSign)
 
     if (this.canHookRequest()) {
-      // queryパラメーターを使ってsignを送る方式
-      const Vhs = (videojs as any).Vhs
-      Vhs.xhr.beforeRequest = (options: any) => {
-        const isApi = options.uri.startsWith(this.options.endpoint!)
-        if (isApi) {
-          options.uri = `${options.uri}?contentToken=${this.sign?.contentToken ?? ''}`
-        } else {
-          options.uri = `${options.uri}?${this.sign?.sign ?? ''}`
+      const tech = this.player?.tech(true) as any
+      tech?.ready(() => {
+        // queryパラメーターを使ってsignを送る方式
+        const vhs = tech.vhs
+        vhs.xhr.beforeRequest = (options: any) => {
+          const url = new URL(options.uri)
+          const isApi = url.toString().startsWith(this.options.endpoint!)
+          if (isApi) {
+            url.searchParams.set('contentToken', this.sign?.contentToken ?? '')
+            options.uri = url.toString()
+          } else {
+            url.search = `?${this.sign?.sign ?? ''}`
+            options.uri = url.toString()
+          }
+          return options
         }
-        return options
-      }
+      })
     }
 
     this.player?.one('loadeddata', () => {
