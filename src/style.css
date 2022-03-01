@@ -22,5 +22,10 @@
   width: 100%;
   min-width: 100%;
   height: auto;
-  aspect-ratio: var(--draken-player-video-width, var(--draken-player-default-video-width, 16)) / var(--draken-player-video-height, var(--draken-player-default-video-height, 9));
+  padding-top: calc(
+    min(
+      var(--draken-player-aspect-ratio, var(--draken-player-default-aspect-ratio, calc(9 / 16 * 100%))),
+      var(--draken-player-max-height, 99999px)
+    )
+  );
 }

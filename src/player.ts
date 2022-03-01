@@ -181,9 +181,9 @@ class Player {
       if (!this.player) return
       const width = this.player.videoWidth()
       const height = this.player.videoHeight()
+      const aspectRatio = height / width
       const el = this.player.el() as HTMLElement
-      el.style.setProperty('--draken-player-video-width', String(width))
-      el.style.setProperty('--draken-player-video-height', String(height))
+      el.style.setProperty('--draken-player-aspect-ratio', `${aspectRatio * 100}%`)
     })
 
     this.player?.one('play', async () => {
