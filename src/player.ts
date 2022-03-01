@@ -3,6 +3,8 @@ import 'video.js/dist/video-js.css'
 import 'videojs-contrib-quality-levels'
 import './QualityChangeMenuPlugin/register'
 import './PlaybackResumePlugin/register'
+import './ThumbnailPreviewPlugin/register'
+import './ThumbnailPreviewPlugin/style.css'
 import { getVideoUrl, Tokens, playLogs, VideoUrlApiResponse } from './api'
 import './style.css'
 
@@ -144,6 +146,7 @@ class Player {
       this.player?.qualityChangeMenu().dispose()
       this.player?.qualityChangeMenu().setup()
     }
+    this.setupThumbnailPreview()
 
     const url = new URL(this.contentUrl)
     // 本当は`player.vhs.xhr.beforeRequest`でcontentTokenを付与したいが、
@@ -240,6 +243,19 @@ class Player {
     const mockSrc = { type: 'application/x-mpegURL', src: '' }
     const sourceHandler = tech.selectSourceHandler(mockSrc)
     return sourceHandler.name === 'videojs-http-streaming'
+  }
+
+  protected setupThumbnailPreview() {
+    const thumbnailUrlBase = new URL(this.poster!)
+    thumbnailUrlBase.pathname = thumbnailUrlBase.pathname.replace(new RegExp('_poster\\.0000000\\.jpg$'), '.')
+    this.player?.thumbnailPreview().setup(time => {
+      const url = new URL(thumbnailUrlBase)
+      const index = Math.floor(time / 6)
+      url.pathname += String(index).padStart(7, '0')
+      url.pathname += '.jpg'
+      url.search = '?' + this.sign?.sign
+      return url.toString()
+    })
   }
 
   dispose() {

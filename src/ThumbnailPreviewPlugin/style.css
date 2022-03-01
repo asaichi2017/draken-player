@@ -1,0 +1,8 @@
+.vjs-mouse-display .vjs-time-tooltip {
+  width: var(--thumbnail-preview-width, 160px);
+  height: var(--thumbnail-preview-width, 90px);
+  top: initial;
+  bottom: 1em;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
