@@ -3,6 +3,7 @@
   height: var(--thumbnail-preview-width, 90px);
   top: initial;
   bottom: 1em;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
