@@ -247,7 +247,7 @@ class Player {
 
   protected setupThumbnailPreview() {
     const thumbnailUrlBase = new URL(this.poster!)
-    thumbnailUrlBase.pathname = thumbnailUrlBase.pathname.replace(new RegExp('_poster\\.0000000\\.jpg$'), '.')
+    thumbnailUrlBase.pathname = thumbnailUrlBase.pathname.replace(new RegExp('_poster\\.[^.]+\\.jpg$'), '.')
     this.player?.thumbnailPreview().setup(time => {
       const url = new URL(thumbnailUrlBase)
       const index = Math.floor(time / 6)
