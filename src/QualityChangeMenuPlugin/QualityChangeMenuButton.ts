@@ -43,11 +43,28 @@ export class QualityChangeMenuButton extends MenuButton {
     const items = [...Array(qualityLevels.length).keys()].map(i => {
       const level = qualityLevels[i]
       const label = `${level.height}p`
-      return new QualityChangeMenuItem(this.player_, level, onClick, {
-        label,
-      })
+      return new QualityChangeMenuItem(
+        this.player_,
+        level,
+        () => {
+          onClick()
+          this.player_.trigger('QualityChangeMenuPlugin:change', level)
+          // this.player_.trigger({ type: 'QualityChangeMenuPlugin:change', data: level })
+        },
+        {
+          label,
+        },
+      )
     })
-    const auto = new QualityChangeAutoMenuItem(this.player_, null, onClick, { label: 'Auto' })
+    const auto = new QualityChangeAutoMenuItem(
+      this.player_,
+      null,
+      () => {
+        onClick()
+        this.player_.trigger('QualityChangeMenuPlugin:change', null)
+      },
+      { label: 'Auto' },
+    )
 
     // 再生される解像度とメニューの選択状態は別の話
     // 例えば
