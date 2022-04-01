@@ -172,7 +172,7 @@ class Player {
             url.searchParams.set('contentToken', this.sign?.contentToken ?? '')
             options.uri = url.toString()
           } else {
-            url.search = `?${this.sign?.sign ?? ''}`
+            url.search = (url.search ? `${url.search}&` : '?') + `${this.sign?.sign ?? ''}`
             options.uri = url.toString()
           }
           return options
@@ -247,13 +247,14 @@ class Player {
 
   protected setupThumbnailPreview() {
     const thumbnailUrlBase = new URL(this.poster!)
+    const oc = thumbnailUrlBase.searchParams.get('oc')
     thumbnailUrlBase.pathname = thumbnailUrlBase.pathname.replace(new RegExp('_poster\\.[^.]+\\.jpg$'), '.')
     this.player?.thumbnailPreview().setup(time => {
       const url = new URL(thumbnailUrlBase)
       const index = Math.floor(time / 6)
       url.pathname += String(index).padStart(7, '0')
       url.pathname += '.jpg'
-      url.search = '?' + this.sign?.sign
+      url.search = `?oc=${oc}&` + this.sign?.sign
       return url.toString()
     })
   }
