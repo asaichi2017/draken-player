@@ -29,3 +29,16 @@
     )
   );
 }
+
+.video-js .vjs-current-time,
+.video-js .vjs-time-divider,
+.video-js .vjs-duration
+{
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+}
+.video-js .vjs-time-divider {
+  min-width: 1em;
+  text-align: center;
+}

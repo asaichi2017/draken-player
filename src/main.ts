@@ -21,12 +21,34 @@ const player = draken.player('video', {
   // controlBarそのものを非表示
   // controlBar: false,
   controlBar: {
-    // fullscreenToggle: false,
-    // pictureInPictureToggle: false,
+    // volumePanel: {
+    //   inline: true,
+    //   volumeControl: {
+    //     vertical: true,
+    //     volumeBar: undefined
+    //   }
+    // },
     // volumePanel: false,
-    // playToggle: false,
-    // progressControl: false,
+    // playToggle: true,
+    // captionsButton: true,
+    // chaptersButton: true,
+    // subtitlesButton: true,
     // remainingTimeDisplay: false,
+    // progressControl: {
+    //   seekBar: true,
+    // },
+    // fullscreenToggle: true,
+    // playbackRateMenuButton: true,
+    // pictureInPictureToggle: true,
+    // currentTimeDisplay: false,
+    // timeDivider: false,
+    // durationDisplay: false,
+    // liveDisplay: true,
+    // seekToLive: true,
+    // customControlSpacer: true,
+    // descriptionsButton: true,
+    // subsCapsButton: true,
+    // audioTrackButton: true,
   },
 })
 
